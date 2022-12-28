@@ -1,16 +1,18 @@
 [
-{
-  "modid": "examplemod",
-  "name": "Example Mod",
-  "description": "Example placeholder mod.",
-  "version": "${version}",
-  "mcversion": "${mcversion}",
-  "url": "",
-  "updateUrl": "",
-  "authorList": ["CleanroomMC"],
-  "credits": "Authors of this project",
-  "logoFile": "",
-  "screenshots": [],
-  "dependencies": []
-}
+  {
+    "modid": "ragimaterials",
+    "name": "Ragi Materials",
+    "description": "A simple mod adding material with unified standards",
+    "version": "${version}",
+    "mcversion": "${mcversion}",
+    "url": "",
+    "updateUrl": "",
+    "authorList": [
+      "Hiiragi Tsubasa"
+    ],
+    "credits": "Authors of this project, and CleanroomMC",
+    "logoFile": "",
+    "screenshots": [],
+    "dependencies": []
+  }
 ]
