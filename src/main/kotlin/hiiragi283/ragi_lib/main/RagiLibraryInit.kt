@@ -1,8 +1,10 @@
 package hiiragi283.ragi_lib.main
 
+import hiiragi283.ragi_lib.main.event.RightClickBlock
 import hiiragi283.ragi_lib.main.item.ItemBookDebug
 import hiiragi283.ragi_lib.main.item.ItemRagiTicket
 import net.minecraft.item.Item
+import net.minecraftforge.common.MinecraftForge
 import net.minecraftforge.fml.common.registry.ForgeRegistries
 
 object RagiLibraryInit {
@@ -17,7 +19,9 @@ object RagiLibraryInit {
     fun registerBlocks() {}
 
     //Eventを登録するメソッド
-    fun registerEvents() {}
+    fun registerEvents() {
+        MinecraftForge.EVENT_BUS.register(RightClickBlock())
+    }
 
     //Itemを登録するメソッド
     fun registerItems() {

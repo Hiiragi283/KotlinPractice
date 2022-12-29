@@ -6,6 +6,7 @@
 # Items
 item.book_debug.0.name=Spawn Book (DEBUG)
 item.book_debug.1.name=Syntax Book (DEBUG)
+item.book_debug.2.name=Property Book (DEBUG)
 item.ragi_ticket.name=Ragi Ticket
 
 # Text

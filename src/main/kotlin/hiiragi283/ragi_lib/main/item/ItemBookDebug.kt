@@ -12,7 +12,7 @@ import net.minecraft.util.math.BlockPos
 import net.minecraft.util.text.TextComponentTranslation
 import net.minecraft.world.World
 
-class ItemBookDebug : ItemBase("book_debug", 1) {
+class ItemBookDebug : ItemBase("book_debug", 2) {
     //Rarityを得るメソッド
     override fun getRarity(item: ItemStack): EnumRarity {
         //EPICを返す
@@ -34,20 +34,22 @@ class ItemBookDebug : ItemBase("book_debug", 1) {
             //サーバー側のみで実行
             if (!world.isRemote) {
                 //チャットにテキストを流す
-                player.sendMessage(TextComponentTranslation("text.ragi_lib.decoration_line.name", Any()))
-                player.sendMessage(TextComponentTranslation("text.ragi_lib.spawn.name", Any()))
-                player.sendMessage(TextComponentTranslation("text.ragi_lib.decoration_line.name", Any()))
+                player.sendMessage(TextComponentTranslation("text.ragi_lib.decoration_line.name"))
+                player.sendMessage(TextComponentTranslation("text.ragi_lib.spawn.name"))
+                player.sendMessage(TextComponentTranslation("text.ragi_lib.decoration_line.name"))
             }
-        } else if (stack.metadata == 1) {
+        }
+        //Syntax用
+        else if (stack.metadata == 1) {
             //サーバー側のみで実行
             if (!world.isRemote) {
                 //コマンドを実行
                 RagiUtils.executeCommand(player, "ct syntax")
                 RagiUtils.executeCommand(player, "ct reload")
                 //チャットにテキストを流す
-                player.sendMessage(TextComponentTranslation("text.ragi_lib.decoration_line.name", Any()))
-                player.sendMessage(TextComponentTranslation("text.ragi_lib.syntax.name", Any()))
-                player.sendMessage(TextComponentTranslation("text.ragi_lib.decoration_line.name", Any()))
+                player.sendMessage(TextComponentTranslation("text.ragi_lib.decoration_line.name"))
+                player.sendMessage(TextComponentTranslation("text.ragi_lib.syntax.name"))
+                player.sendMessage(TextComponentTranslation("text.ragi_lib.decoration_line.name"))
             }
         }
         return ActionResult<ItemStack>(EnumActionResult.SUCCESS, stack)
