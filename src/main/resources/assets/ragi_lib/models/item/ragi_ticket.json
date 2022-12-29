@@ -1,0 +1,7 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "ragi_lib:items/ticket_hiiragi",
+    "layer1": "ragi_lib:items/ticket_mythic"
+  }
+}

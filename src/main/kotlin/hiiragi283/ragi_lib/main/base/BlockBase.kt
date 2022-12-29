@@ -1,6 +1,6 @@
-package hiiragi283.ragimaterials.main.base
+package hiiragi283.ragi_lib.main.base
 
-import hiiragi283.ragimaterials.main.Reference
+import hiiragi283.ragi_lib.main.Reference
 import net.minecraft.block.Block
 import net.minecraft.block.material.Material
 import net.minecraft.block.properties.PropertyInteger
@@ -10,7 +10,7 @@ import net.minecraft.creativetab.CreativeTabs
 import net.minecraft.item.Item
 import java.util.*
 
-class BlockBase(Material: Material?, ID: String?, maxMeta: Int) : Block(Material!!) {
+open class BlockBase(Material: Material?, ID: String?, maxMeta: Int) : Block(Material!!) {
 
     //private変数の宣言
     private val maxMeta: Int

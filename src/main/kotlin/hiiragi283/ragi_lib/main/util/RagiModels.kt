@@ -1,4 +1,4 @@
-package hiiragi283.ragimaterials.main.proxy
+package hiiragi283.ragi_lib.main.util
 
 import net.minecraft.block.Block
 import net.minecraft.client.Minecraft
@@ -10,19 +10,7 @@ import net.minecraftforge.client.model.ModelLoader
 import net.minecraftforge.fml.relauncher.Side
 import net.minecraftforge.fml.relauncher.SideOnly
 
-class ClientProxy : CommonProxy() {
-    //Pre-Initializationで読み込むメソッド
-    override fun loadPreInit() {
-        setModels()
-    }
-
-    //Initializationで読み込むメソッド
-    override fun loadInit() {
-        setColors()
-    }
-
-    //Post-Initializationで読み込むメソッド
-    override fun loadPostInit() {}
+object RagiModels {
 
     //代入されたItemに応じてモデルファイルのパスを登録するメソッド
     @SideOnly(Side.CLIENT)
@@ -36,7 +24,7 @@ class ClientProxy : CommonProxy() {
                 )
             }
         } else {
-            //itemが耐久地を持っている場合，IDから設定
+            //itemがメタデータを使用しない場合，IDから設定
             ModelLoader.setCustomModelResourceLocation(item, 0, ModelResourceLocation(item.registryName!!, "inventory"))
         }
     }
@@ -61,10 +49,4 @@ class ClientProxy : CommonProxy() {
     fun setColor(color: IItemColor?, item: Item?) {
         Minecraft.getMinecraft().itemColors.registerItemColorHandler(color!!, item)
     }
-
-    //各Itemのモデルファイルのパスを指定するメソッド
-    fun setModels() {}
-
-    //各Itemの着色を指定するメソッド
-    fun setColors() {}
 }

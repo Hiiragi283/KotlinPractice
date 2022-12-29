@@ -1,33 +1,31 @@
-package hiiragi283.ragimaterials.main.base
+package hiiragi283.ragi_lib.main.base
 
 import com.google.common.collect.Lists
-import hiiragi283.ragimaterials.main.Reference
+import net.minecraft.block.Block
 import net.minecraft.client.util.ITooltipFlag
 import net.minecraft.creativetab.CreativeTabs
-import net.minecraft.item.Item
+import net.minecraft.item.ItemBlock
 import net.minecraft.item.ItemStack
 import net.minecraft.util.NonNullList
 import net.minecraft.world.World
 import net.minecraftforge.fml.relauncher.Side
 import net.minecraftforge.fml.relauncher.SideOnly
 
-class ItemBase(ID: String?, maxMeta: Int) : Item() {
+open class ItemBlockBase(block: Block, maxMeta: Int) : ItemBlock(block) {
 
     //private変数の宣言
     private val maxMeta: Int
 
     //コンストラクタの宣言
     init {
-        creativeTab = CreativeTabs.MISC //表示するクリエイティブタブの設定
+        registryName = block.registryName!! //翻訳キーはblockのものから取得
         setHasSubtypes(true) //メタデータを使用する
-        setRegistryName(Reference.MOD_ID, ID) //IDの設定
-        unlocalizedName = ID.toString() //翻訳キーをIDから取得する
-        this.maxMeta = maxMeta //メタデータの代入
+        this.maxMeta = maxMeta //メタデータの最大値を代入
     }
 
     //メタデータを得るメソッド
     override fun getMetadata(damage: Int): Int {
-        //代入した値とメタデータの最大値を比較し、小さい方を返す
+        //代入した値とmaxMetaを比較し、小さい方を返す
         return damage.coerceAtMost(maxMeta)
     }
 

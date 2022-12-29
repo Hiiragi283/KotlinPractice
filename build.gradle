@@ -97,7 +97,7 @@ processResources {
     from(sourceSets.main.resources.srcDirs) {
         include "mcmod.info"
         // replace version and mcversion
-        expand "version":project.version, "mcversion":project.minecraft.version
+        expand "version": project.version, "mcversion": project.minecraft.version
     }
     // copy everything else except the mcmod.info
     from(sourceSets.main.resources.srcDirs) {
@@ -126,6 +126,11 @@ jar {
             attribute_map["FMLAT"] = project.archives_base_name + "_at.cfg"
         }
         attributes(attribute_map)
+    }
+    from {
+        configurations.compileClasspath.collect {
+            it.isDirectory() ? it : zipTree(it)
+        }
     }
 }
 compileKotlin {

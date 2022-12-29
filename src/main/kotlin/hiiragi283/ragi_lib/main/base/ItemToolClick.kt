@@ -1,8 +1,8 @@
-package hiiragi283.ragimaterials.main.base
+package hiiragi283.ragi_lib.main.base
 
 import com.google.common.collect.Sets
-import hiiragi283.ragimaterials.main.Reference
-import hiiragi283.ragimaterials.main.util.RagiUtils
+import hiiragi283.ragi_lib.main.Reference
+import hiiragi283.ragi_lib.main.util.RagiUtils
 import net.minecraft.block.Block
 import net.minecraft.block.state.IBlockState
 import net.minecraft.creativetab.CreativeTabs
@@ -14,7 +14,7 @@ import net.minecraft.util.math.RayTraceResult
 import net.minecraft.world.World
 
 //Sandpaper系の継承用のクラス
-class ItemToolClick(ID: String?, maxDamage: Int) : ItemTool(ToolMaterial.WOOD, BLOCKS) {
+open class ItemToolClick(ID: String?, maxDamage: Int) : ItemTool(ToolMaterial.WOOD, BLOCKS) {
 
     companion object {
         val BLOCKS: Set<Block?> = Sets.newHashSet(RagiUtils.getBlock("minecraft", "air"))

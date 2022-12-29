@@ -1,6 +1,6 @@
-package hiiragi283.ragimaterials.main
+package hiiragi283.ragi_lib.main
 
-import hiiragi283.ragimaterials.main.proxy.CommonProxy
+import hiiragi283.ragi_lib.main.proxy.CommonProxy
 import net.minecraftforge.fml.common.Mod
 import net.minecraftforge.fml.common.SidedProxy
 import net.minecraftforge.fml.common.event.FMLInitializationEvent
@@ -15,7 +15,7 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent
     dependencies = Reference.DEPENDENCIES,
     acceptedMinecraftVersions = Reference.MC_VERSIONS
 )
-class RagiMaterials {
+class RagiLibrary {
 
     companion object {
         //Proxyの定義
@@ -26,12 +26,16 @@ class RagiMaterials {
     //Pre-Initializationの段階で呼ばれるevent
     @Mod.EventHandler
     fun preInit(event: FMLPreInitializationEvent?) {
+        RagiLibraryInit.registerBlocks()
+        RagiLibraryInit.registerEvents()
+        RagiLibraryInit.registerItems()
         proxy!!.loadPreInit()
     }
 
     //Initializationの段階で呼ばれるevent
     @Mod.EventHandler
     fun init(event: FMLInitializationEvent?) {
+        RagiLibraryInit.registerOreDict()
         proxy!!.loadInit()
     }
 

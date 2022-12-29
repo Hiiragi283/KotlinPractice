@@ -1,0 +1,14 @@
+
+# Blocks
+
+# GUI
+
+# Items
+item.book_debug.0.name=Spawn Book (DEBUG)
+item.book_debug.1.name=Syntax Book (DEBUG)
+item.ragi_ticket.name=らぎチケット
+
+# Text
+text.ragi_lib.decoration_line.name=§e§l========================================
+text.ragi_lib.spawn.name=§bTeleport you to the spawn point!
+text.ragi_lib.syntax.name=§bSyntax and Reload!
