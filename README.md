@@ -3,6 +3,7 @@
 ## Overview
 
 - This mod is a library mod, so my other mods requires it.
+- **Requires [Shadowfacts' Forgelin](https://www.curseforge.com/minecraft/mc-mods/shadowfacts-forgelin)**
 
 ## Credit
 
