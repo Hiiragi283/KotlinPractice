@@ -18,9 +18,9 @@ class ItemBase(ID: String?, maxMeta: Int) : Item() {
 
     //コンストラクタの宣言
     init {
-        this.setRegistryName(Reference.MOD_ID, ID) //IDの設定
         creativeTab = CreativeTabs.MISC //表示するクリエイティブタブの設定
         setHasSubtypes(true) //メタデータを使用する
+        setRegistryName(Reference.MOD_ID, ID) //IDの設定
         unlocalizedName = ID.toString() //翻訳キーをIDから取得する
         this.maxMeta = maxMeta //メタデータの代入
     }

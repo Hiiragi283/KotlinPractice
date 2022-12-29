@@ -9,7 +9,6 @@ import net.minecraft.item.Item
 import net.minecraftforge.client.model.ModelLoader
 import net.minecraftforge.fml.relauncher.Side
 import net.minecraftforge.fml.relauncher.SideOnly
-import java.util.*
 
 class ClientProxy : CommonProxy() {
     //Pre-Initializationで読み込むメソッド
@@ -32,7 +31,9 @@ class ClientProxy : CommonProxy() {
         if (item.hasSubtypes) {
             //メタデータが最大値になるまで処理を繰り返す
             for (i in 0 until item.getMetadata(283) + 1) {
-                ModelLoader.setCustomModelResourceLocation(item, i, ModelResourceLocation(item.registryName.toString() + "_" + i, "inventory"))
+                ModelLoader.setCustomModelResourceLocation(
+                    item, i, ModelResourceLocation(item.registryName.toString() + "_" + i, "inventory")
+                )
             }
         } else {
             //itemが耐久地を持っている場合，IDから設定

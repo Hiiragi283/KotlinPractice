@@ -10,7 +10,6 @@ import net.minecraft.util.NonNullList
 import net.minecraft.world.World
 import net.minecraftforge.fml.relauncher.Side
 import net.minecraftforge.fml.relauncher.SideOnly
-import java.util.*
 
 class ItemBlockBase(block: Block, maxMeta: Int) : ItemBlock(block) {
 
@@ -19,7 +18,7 @@ class ItemBlockBase(block: Block, maxMeta: Int) : ItemBlock(block) {
 
     //コンストラクタの宣言
     init {
-        registryName = Objects.requireNonNull(block.registryName) //翻訳キーはblockのものから取得
+        registryName = block.registryName!! //翻訳キーはblockのものから取得
         setHasSubtypes(true) //メタデータを使用する
         this.maxMeta = maxMeta //メタデータの最大値を代入
     }

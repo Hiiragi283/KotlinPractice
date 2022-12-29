@@ -19,7 +19,6 @@ import net.minecraftforge.fluids.Fluid
 import net.minecraftforge.fluids.FluidRegistry
 import net.minecraftforge.fml.common.registry.ForgeRegistries
 import net.minecraftforge.oredict.OreDictionary
-import java.util.*
 
 object RagiUtils {
     //コマンドを実行するメソッド
@@ -32,7 +31,7 @@ object RagiUtils {
     //ResourceLocationからBlockを取得するメソッド
     //Blockがnullの場合はバリアブロックを返す
     fun getBlock(registryName: String): Block {
-        val block: Block? = ForgeRegistries.BLOCKS.getValue(getResource(registryName))
+        val block: Block? = ForgeRegistries.BLOCKS.getValue(ResourceLocation(registryName))
         return if (block !== null) block else {
             RagiLogger.warnDebug("The block <$registryName> was not found...")
             Blocks.BARRIER
@@ -57,9 +56,9 @@ object RagiUtils {
     //ResourceLocationからItemを取得するメソッド
     //Itemがnullの場合はバリアブロックを返す
     fun getItem(registryName: String): Item {
-        val item: Item? = ForgeRegistries.ITEMS.getValue(getResource(registryName))
+        val item: Item? = ForgeRegistries.ITEMS.getValue(ResourceLocation(registryName))
         val barrier: Item? = ForgeRegistries.ITEMS.getValue(ResourceLocation("minecraft", "barrier"))
-        return if (Objects.nonNull(item)) item!! else {
+        return if (item !== null) item else {
             RagiLogger.warnDebug("The item <$registryName> was not found...")
             barrier!!
         }
@@ -72,8 +71,8 @@ object RagiUtils {
     //ResourceLocationなどからItemStackを取得するメソッド
     //ItemStackがnullの場合はバリアブロックを返す
     fun getStack(registryName: String, amount: Int, meta: Int): ItemStack {
-        val item: Item? = ForgeRegistries.ITEMS.getValue(getResource(registryName))
-        return if (Objects.nonNull(item)) ItemStack(item!!, amount, meta) else {
+        val item: Item? = ForgeRegistries.ITEMS.getValue(ResourceLocation(registryName))
+        return if (item !== null) ItemStack(item, amount, meta) else {
             RagiLogger.warnDebug("The item stack <$registryName:$meta> * $amount was not found...")
             ItemStack(getItem("minecraft", "barrier"), amount, 0)
         }
@@ -109,9 +108,9 @@ object RagiUtils {
     //ResourceLocationからPotionを取得するメソッド
     //Potionがnullの場合は不運を返す
     fun getPotion(registryName: String): Potion {
-        val potion: Potion? = ForgeRegistries.POTIONS.getValue(getResource(registryName))
+        val potion: Potion? = ForgeRegistries.POTIONS.getValue(ResourceLocation(registryName))
         val unluck: Potion? = ForgeRegistries.POTIONS.getValue(ResourceLocation("minecraft", "unluck"))
-        return if (Objects.nonNull(potion)) potion!! else {
+        return if (potion !== null) potion else {
             RagiLogger.warnDebug("The potion <potion:$registryName> was not found...")
             unluck!!
         }
@@ -126,25 +125,30 @@ object RagiUtils {
         return PotionEffect(getPotion(domain, path), time, level)
     }
 
-    //StringからResource Locationを取得するメソッド
-    fun getResource(location: String): ResourceLocation {
-        return ResourceLocation(location.split(":".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()[0], location.split(":".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()[1])
-    }
-
     //ResourceLocationからSoundEventを取得するメソッド
     //SoundEventがnullの場合はレベルアップの音を返す
     fun getSound(registryName: String): SoundEvent {
-        val location: ResourceLocation = getResource(registryName)
-        val sound: SoundEvent? = ForgeRegistries.SOUND_EVENTS.getValue(location)
-        val levelUp: SoundEvent? = ForgeRegistries.SOUND_EVENTS.getValue(ResourceLocation("minecraft", "entity.player.levelup"))
-        return if (Objects.nonNull(sound)) sound!! else {
-            RagiLogger.warnDebug("The sound <soundevent:$location> was not found...")
+        val sound: SoundEvent? = ForgeRegistries.SOUND_EVENTS.getValue(ResourceLocation(registryName))
+        val levelUp: SoundEvent? =
+            ForgeRegistries.SOUND_EVENTS.getValue(ResourceLocation("minecraft", "entity.player.levelup"))
+        return if (sound !== null) sound else {
+            RagiLogger.warnDebug("The sound <soundevent:$registryName> was not found...")
             levelUp!!
         }
     }
 
     fun getSound(domain: String, path: String): SoundEvent {
         return getSound("$domain:$path")
+    }
+
+    //2つのItemStackが同じかどうかを判断するメソッド
+    fun isSameStack(stack1: ItemStack, stack2: ItemStack): Boolean {
+        val isNotSame = false
+        if (stack1.isEmpty && stack2.isEmpty) return isNotSame
+        val item1 = stack1.item
+        val item2 = stack2.item
+        if (item1.registryName == item2.registryName && stack1.metadata == stack2.metadata) return true
+        return isNotSame
     }
 
     //鉱石辞書を追加するメソッド

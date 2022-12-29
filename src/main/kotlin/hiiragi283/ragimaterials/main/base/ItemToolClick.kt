@@ -12,7 +12,6 @@ import net.minecraft.item.ItemTool
 import net.minecraft.util.*
 import net.minecraft.util.math.RayTraceResult
 import net.minecraft.world.World
-import java.util.*
 
 //Sandpaper系の継承用のクラス
 class ItemToolClick(ID: String?, maxDamage: Int) : ItemTool(ToolMaterial.WOOD, BLOCKS) {
@@ -59,14 +58,14 @@ class ItemToolClick(ID: String?, maxDamage: Int) : ItemTool(ToolMaterial.WOOD, B
                 val state = world.getBlockState(pos)
                 val block = state.block
                 //stateと対応する組み合わせがある場合
-                if (Objects.nonNull(recipeMap(state))) {
+                if (recipeMap(state) !== null) {
                     //対応するstateで置き換える
                     world.setBlockState(pos, recipeMap(state)!!)
                     //stackの耐久地を1減らす
                     stack.damageItem(1, player)
                     //とりあえず音鳴らすか
                     world.playSound(null, pos, recipeSound()!!, SoundCategory.BLOCKS, 1.0f, 0.5f)
-                } else if (Objects.nonNull(recipeMap(block))) {
+                } else if (recipeMap(block) !== null) {
                     //対応するstateで置き換える
                     world.setBlockState(pos, recipeMap(block)!!)
                     //stackの耐久地を1減らす
