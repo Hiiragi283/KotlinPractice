@@ -5,6 +5,6 @@ import net.minecraftforge.common.config.Config
 
 @Config(modid = Reference.MOD_ID)
 object RagiMaterialsConfig {
-    @Config.Comment("If true, GOHD Tweaks throws debug log")
+    @Config.Comment("If true, Ragi Library throws too many debug log")
     var isDebug = false
 }
