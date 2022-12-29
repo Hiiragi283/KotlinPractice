@@ -1,5 +1,12 @@
 package hiiragi283.ragi_lib.main.util
 
+import net.minecraft.block.Block
+import net.minecraft.client.Minecraft
+import net.minecraft.client.renderer.color.IBlockColor
+import net.minecraft.client.renderer.color.IItemColor
+import net.minecraft.item.Item
+import net.minecraftforge.fml.relauncher.Side
+import net.minecraftforge.fml.relauncher.SideOnly
 import java.awt.Color
 
 object RagiColor {
@@ -25,5 +32,17 @@ object RagiColor {
         val blue2 = colorMixed.blue * 2 - colorBase1.blue
         //混成前の色を返す
         return Color(red2, green2, blue2)
+    }
+
+    //代入されたIBlockColorをBlockに登録するメソッド
+    @SideOnly(Side.CLIENT)
+    fun setColor(color: IBlockColor?, block: Block?) {
+        Minecraft.getMinecraft().blockColors.registerBlockColorHandler(color!!, block)
+    }
+
+    //代入されたIItemColorをItemに登録するメソッド
+    @SideOnly(Side.CLIENT)
+    fun setColor(color: IItemColor?, item: Item?) {
+        Minecraft.getMinecraft().itemColors.registerItemColorHandler(color!!, item)
     }
 }

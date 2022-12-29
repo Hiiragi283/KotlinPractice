@@ -127,11 +127,7 @@ jar {
         }
         attributes(attribute_map)
     }
-    from {
-        configurations.compileClasspath.collect {
-            it.isDirectory() ? it : zipTree(it)
-        }
-    }
+
 }
 compileKotlin {
     kotlinOptions {

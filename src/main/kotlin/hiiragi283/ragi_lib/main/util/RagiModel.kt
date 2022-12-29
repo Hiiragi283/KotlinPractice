@@ -1,16 +1,12 @@
 package hiiragi283.ragi_lib.main.util
 
-import net.minecraft.block.Block
-import net.minecraft.client.Minecraft
 import net.minecraft.client.renderer.block.model.ModelResourceLocation
-import net.minecraft.client.renderer.color.IBlockColor
-import net.minecraft.client.renderer.color.IItemColor
 import net.minecraft.item.Item
 import net.minecraftforge.client.model.ModelLoader
 import net.minecraftforge.fml.relauncher.Side
 import net.minecraftforge.fml.relauncher.SideOnly
 
-object RagiModels {
+object RagiModel {
 
     //代入されたItemに応じてモデルファイルのパスを登録するメソッド
     @SideOnly(Side.CLIENT)
@@ -36,17 +32,5 @@ object RagiModels {
         for (i in 0 until item.getMetadata(283) + 1) {
             ModelLoader.setCustomModelResourceLocation(item, i, ModelResourceLocation(item.registryName!!, "inventory"))
         }
-    }
-
-    //代入されたIBlockColorをBlockに登録するメソッド
-    @SideOnly(Side.CLIENT)
-    fun setColor(color: IBlockColor?, block: Block?) {
-        Minecraft.getMinecraft().blockColors.registerBlockColorHandler(color!!, block)
-    }
-
-    //代入されたIItemColorをItemに登録するメソッド
-    @SideOnly(Side.CLIENT)
-    fun setColor(color: IItemColor?, item: Item?) {
-        Minecraft.getMinecraft().itemColors.registerItemColorHandler(color!!, item)
     }
 }
