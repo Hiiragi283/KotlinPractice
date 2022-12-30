@@ -1,5 +1,6 @@
 package hiiragi283.ragi_lib.main
 
+import hiiragi283.ragi_lib.config.RagiLibConfig
 import hiiragi283.ragi_lib.main.proxy.CommonProxy
 import net.minecraftforge.fml.common.Mod
 import net.minecraftforge.fml.common.SidedProxy
@@ -26,6 +27,7 @@ class RagiLibrary {
     //Pre-Initializationの段階で呼ばれるevent
     @Mod.EventHandler
     fun preInit(event: FMLPreInitializationEvent?) {
+        RagiLibConfig.load(event!!.modConfigurationDirectory)
         RagiLibraryInit.registerBlocks()
         RagiLibraryInit.registerEvents()
         RagiLibraryInit.registerItems()
