@@ -25,7 +25,7 @@ class RightClickBlock {
             val block = state.block
             val meta = block.getMetaFromState(state)
             //取得した値をログに出力
-            infoDebug("============")
+            /*infoDebug("============")
             infoDebug(stack)
             infoDebug(item)
             infoDebug(stackCompare)
@@ -34,7 +34,7 @@ class RightClickBlock {
             infoDebug(pos)
             infoDebug(state)
             infoDebug(block)
-            infoDebug(meta)
+            infoDebug(meta)*/
             //Property Bookの機能
             if (RagiUtils.isSameStack(stack, RagiUtils.getStack("ragi_lib:book_debug", 1, 2))) {
                 player.sendMessage(TextComponentTranslation("text.ragi_lib.decoration_line.name"))
