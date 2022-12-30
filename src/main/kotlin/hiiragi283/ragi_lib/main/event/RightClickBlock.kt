@@ -45,7 +45,15 @@ class RightClickBlock {
                 //ブロックのBlockstateをチャットに表示
                 player.sendMessage(TextComponentString("  §eBlockstate:§r§b $state"))
                 //ブロックのHardnessをチャットに表示
-                player.sendMessage(TextComponentString("  §eHardness:§r§b " + block.getBlockHardness(state, world, pos)))
+                player.sendMessage(
+                    TextComponentString(
+                        "  §eHardness:§r§b " + block.getBlockHardness(
+                            state,
+                            world,
+                            pos
+                        )
+                    )
+                )
                 //ブロックのResistanceをチャットに表示
                 player.sendMessage(TextComponentString("  §eResistance:§r§b " + block.getExplosionResistance(player)))
                 //適正ツールをチャットに表示
