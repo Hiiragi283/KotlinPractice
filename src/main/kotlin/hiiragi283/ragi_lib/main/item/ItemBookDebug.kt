@@ -12,7 +12,7 @@ import net.minecraft.util.math.BlockPos
 import net.minecraft.util.text.TextComponentTranslation
 import net.minecraft.world.World
 
-class ItemBookDebug : ItemBase("book_debug", 2) {
+class ItemBookDebug : ItemBase("book_debug", 2, 1) {
     //Rarityを得るメソッド
     override fun getRarity(item: ItemStack): EnumRarity {
         //EPICを返す

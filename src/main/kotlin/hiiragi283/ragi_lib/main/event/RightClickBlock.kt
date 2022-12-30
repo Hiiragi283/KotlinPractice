@@ -35,7 +35,7 @@ class RightClickBlock {
             infoDebug(state)
             infoDebug(block)
             infoDebug(meta)
-            //デバッグ用
+            //Property Bookの機能
             if (RagiUtils.isSameStack(stack, RagiUtils.getStack("ragi_lib:book_debug", 1, 2))) {
                 player.sendMessage(TextComponentTranslation("text.ragi_lib.decoration_line.name"))
                 //ブロックの翻訳名をチャットに表示
