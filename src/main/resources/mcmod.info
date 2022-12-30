@@ -1,8 +1,8 @@
 [
   {
-    "modid": "ragimaterials",
-    "name": "Ragi Materials",
-    "description": "A simple mod adding material with unified standards",
+    "modid": "ragi_lib",
+    "name": "Ragi Library",
+    "description": "Library mod for my other mods",
     "version": "${version}",
     "mcversion": "${mcversion}",
     "url": "",
@@ -10,7 +10,7 @@
     "authorList": [
       "Hiiragi Tsubasa"
     ],
-    "credits": "Authors of this project, and CleanroomMC",
+    "credits": "Thanks to the modders helped me, and CleanroomMC !",
     "logoFile": "",
     "screenshots": [],
     "dependencies": []

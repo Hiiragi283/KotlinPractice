@@ -19,8 +19,8 @@ buildscript {
     }
 }
 
-apply plugin: "net.minecraftforge.gradle.forge"
 apply plugin: "kotlin"
+apply plugin: "net.minecraftforge.gradle.forge"
 
 if (project.use_mixins.toBoolean()) {
     apply plugin: "org.spongepowered.mixin"
