@@ -28,26 +28,24 @@ object RagiRecipe {
     //かまどレシピを追加するメソッド
     fun addFurnace(output: ItemStack, input: ItemStack) {
         GameRegistry.addSmelting(input, output, 0f)
-        RagiLogger.infoDebug(
-            "The smelting recipe " + RagiUtils.stackToBracket(input) + " -> " + RagiUtils.stackToBracket(
-                output
-            ) + " was added successfully!"
-        )
+        val bracketIn = RagiUtils.stackToBracket(input)
+        val bracketOut = RagiUtils.stackToBracket(output)
+        RagiLogger.infoDebug("The smelting recipe $bracketIn -> $bracketOut was added successfully!")
     }
 
     //かまどレシピを削除するメソッド
-    fun removeFurnace(output: ItemStack) {
+    fun removeFurnace(input: ItemStack) {
         //かまどレシピのマップを取得する
         val mapFurnace = FurnaceRecipes.instance().smeltingList
         //インプットのイテレータを取得する
-        val iteratorFurnace = mapFurnace.keys.iterator()
+        val iteratorFurnace = mapFurnace.values.iterator()
         //イテレータの各要素について実行する
         while (iteratorFurnace.hasNext()) {
-            //完成品が一致する場合
-            if (RagiUtils.isSameStack(mapFurnace[iteratorFurnace.next()]!!, output)) {
+            //インプットが一致する場合
+            if (RagiUtils.isSameStack(mapFurnace[iteratorFurnace.next()]!!, input)) {
                 //レシピを削除する
                 iteratorFurnace.remove()
-                RagiLogger.infoDebug("The smelting output " + RagiUtils.stackToBracket(output) + " was removed successfully!")
+                RagiLogger.infoDebug("The smelting input " + RagiUtils.stackToBracket(input) + " was removed successfully!")
             }
         }
     }
