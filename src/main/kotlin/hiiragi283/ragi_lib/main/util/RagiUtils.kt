@@ -5,7 +5,6 @@ import net.minecraft.block.Block
 import net.minecraft.block.state.IBlockState
 import net.minecraft.command.ICommandSender
 import net.minecraft.entity.player.EntityPlayer
-import net.minecraft.init.Blocks
 import net.minecraft.item.Item
 import net.minecraft.item.ItemStack
 import net.minecraft.potion.Potion
@@ -22,9 +21,9 @@ import net.minecraftforge.oredict.OreDictionary
 
 object RagiUtils {
     //コマンドを実行するメソッド
-    fun executeCommand(sender: ICommandSender?, command: String?) {
-        if (Reference.SERVER !== null) {
-            Reference.SERVER.getCommandManager().executeCommand(sender!!, command!!)
+    fun executeCommand(sender: ICommandSender?, command: String) {
+        if (Reference.SERVER !== null && sender !== null) {
+            Reference.SERVER.getCommandManager().executeCommand(sender, command)
         }
     }
 
@@ -34,7 +33,7 @@ object RagiUtils {
         val block: Block? = ForgeRegistries.BLOCKS.getValue(ResourceLocation(registryName))
         return if (block !== null) block else {
             RagiLogger.warnDebug("The block <$registryName> was not found...")
-            Blocks.BARRIER
+            ForgeRegistries.BLOCKS.getValue(ResourceLocation("minecraft:barrier"))!!
         }
     }
 
@@ -46,10 +45,9 @@ object RagiUtils {
     //Fluidがnullの場合は水を返す
     fun getFluid(name: String): Fluid {
         val fluid: Fluid = FluidRegistry.getFluid(name)
-        val water: Fluid = FluidRegistry.getFluid("water")
         return if (fluid !== null) fluid else {
             RagiLogger.warnDebug("The fluid <fluid:$name> was not found...")
-            water
+            FluidRegistry.getFluid("water")
         }
     }
 
@@ -57,10 +55,9 @@ object RagiUtils {
     //Itemがnullの場合はバリアブロックを返す
     fun getItem(registryName: String): Item {
         val item: Item? = ForgeRegistries.ITEMS.getValue(ResourceLocation(registryName))
-        val barrier: Item? = ForgeRegistries.ITEMS.getValue(ResourceLocation("minecraft", "barrier"))
         return if (item !== null) item else {
             RagiLogger.warnDebug("The item <$registryName> was not found...")
-            barrier!!
+            ForgeRegistries.ITEMS.getValue(ResourceLocation("minecraft:barrier"))!!
         }
     }
 
@@ -87,9 +84,9 @@ object RagiUtils {
     fun getState(registryName: String, meta: Int): IBlockState {
         val block = getBlock(registryName)
         val state: IBlockState = block.getStateFromMeta(meta)
-        return if (block !== Blocks.BARRIER) state else {
+        return if (block !== getBlock("minecraft:barrier")) state else {
             RagiLogger.warnDebug("The blockstate <blockstate:$block:$meta> was not found...")
-            Blocks.BARRIER.defaultState
+            getBlock("minecraft:barrier").defaultState
         }
     }
 
@@ -99,9 +96,9 @@ object RagiUtils {
 
     fun getState(block: Block, meta: Int): IBlockState {
         val state: IBlockState = block.getStateFromMeta(meta)
-        return if (block !== Blocks.BARRIER) state else {
+        return if (block !== getBlock("minecraft:barrier")) state else {
             RagiLogger.warnDebug("The blockstate <blockstate:$block:$meta> was not found...")
-            Blocks.BARRIER.defaultState
+            getBlock("minecraft:barrier").defaultState
         }
     }
 
@@ -109,10 +106,9 @@ object RagiUtils {
     //Potionがnullの場合は不運を返す
     fun getPotion(registryName: String): Potion {
         val potion: Potion? = ForgeRegistries.POTIONS.getValue(ResourceLocation(registryName))
-        val unluck: Potion? = ForgeRegistries.POTIONS.getValue(ResourceLocation("minecraft", "unluck"))
         return if (potion !== null) potion else {
             RagiLogger.warnDebug("The potion <potion:$registryName> was not found...")
-            unluck!!
+            ForgeRegistries.POTIONS.getValue(ResourceLocation("minecraft:unluck"))!!
         }
     }
 
@@ -129,11 +125,9 @@ object RagiUtils {
     //SoundEventがnullの場合はレベルアップの音を返す
     fun getSound(registryName: String): SoundEvent {
         val sound: SoundEvent? = ForgeRegistries.SOUND_EVENTS.getValue(ResourceLocation(registryName))
-        val levelUp: SoundEvent? =
-            ForgeRegistries.SOUND_EVENTS.getValue(ResourceLocation("minecraft", "entity.player.levelup"))
         return if (sound !== null) sound else {
             RagiLogger.warnDebug("The sound <soundevent:$registryName> was not found...")
-            levelUp!!
+            ForgeRegistries.SOUND_EVENTS.getValue(ResourceLocation("minecraft:entity.player.levelup"))!!
         }
     }
 
