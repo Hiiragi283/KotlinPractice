@@ -5,24 +5,18 @@ import java.io.File
 
 object RagiLibConfig {
 
+    //変数の宣言
     var isDebug = false
 
-    fun load(file: File?) {
-        val dir = File(file, "ragi_lib.cfg")
-        loadConfig(Configuration(dir))
-    }
-
-    private fun loadConfig(config: Configuration) {
+    //configを読み込むメソッド
+    fun load(file: File) {
+        //configファイルを指定
+        val config = Configuration(File(file, "ragi_lib.cfg"))
         try {
             //configの読み込み
             config.load()
             //各値の取得
-            isDebug = config.get(
-                "debug setting",
-                "Debug Log",
-                isDebug,
-                "If true, Ragi Library throws sooo many debug logs..."
-            ).boolean
+            isDebug = config.get("debug setting", "Debug Log", isDebug, "If true, Ragi Library throws sooo many debug logs...").boolean
         } catch (e: Exception) {
             //エラーを出力
             e.printStackTrace()

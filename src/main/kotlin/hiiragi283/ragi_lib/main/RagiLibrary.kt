@@ -9,14 +9,7 @@ import net.minecraftforge.fml.common.event.FMLPostInitializationEvent
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent
 
 //Modの定義
-@Mod(
-    modid = Reference.MOD_ID,
-    name = Reference.MOD_NAME,
-    version = Reference.VERSION,
-    dependencies = Reference.DEPENDENCIES,
-    acceptedMinecraftVersions = Reference.MC_VERSIONS,
-    modLanguageAdapter = Reference.LANGUAGE
-)
+@Mod(modid = Reference.MOD_ID, name = Reference.MOD_NAME, version = Reference.VERSION, dependencies = Reference.DEPENDENCIES, acceptedMinecraftVersions = Reference.MC_VERSIONS, modLanguageAdapter = Reference.LANGUAGE)
 class RagiLibrary {
 
     companion object {
@@ -28,23 +21,29 @@ class RagiLibrary {
     //Pre-Initializationの段階で呼ばれるevent
     @Mod.EventHandler
     fun preInit(event: FMLPreInitializationEvent?) {
+        //configの読み込み
         RagiLibConfig.load(event!!.modConfigurationDirectory)
+        //Block, Event, Itemの登録
         RagiLibraryInit.registerBlocks()
         RagiLibraryInit.registerEvents()
         RagiLibraryInit.registerItems()
+        //proxyの読み込み
         proxy!!.loadPreInit()
     }
 
     //Initializationの段階で呼ばれるevent
     @Mod.EventHandler
     fun init(event: FMLInitializationEvent?) {
+        //鉱石辞書の登録
         RagiLibraryInit.registerOreDict()
+        //proxyの読み込み
         proxy!!.loadInit()
     }
 
     //Post-Initializationの段階で呼ばれるevent
     @Mod.EventHandler
     fun postInit(event: FMLPostInitializationEvent?) {
+        //proxyの読み込み
         proxy!!.loadPostInit()
     }
 }
