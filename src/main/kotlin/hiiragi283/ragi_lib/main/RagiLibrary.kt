@@ -14,7 +14,8 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent
     name = Reference.MOD_NAME,
     version = Reference.VERSION,
     dependencies = Reference.DEPENDENCIES,
-    acceptedMinecraftVersions = Reference.MC_VERSIONS
+    acceptedMinecraftVersions = Reference.MC_VERSIONS,
+    modLanguageAdapter = Reference.LANGUAGE
 )
 class RagiLibrary {
 
