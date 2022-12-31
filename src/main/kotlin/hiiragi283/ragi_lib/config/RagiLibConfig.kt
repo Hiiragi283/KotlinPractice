@@ -20,8 +20,18 @@ object RagiLibConfig {
             //configの読み込み
             config.load()
             //各値の取得
-            isDebug = config.get("debug setting", "Debug Log", isDebug, "If true, Ragi Library throws sooo many debug logs...").boolean
-            lootRagiTicket = config.get("loot tables", "Loot Table for Ragi Ticket", lootRagiTicket, "Specify which loot tables to use for Ragi Ticket").string
+            isDebug = config.get(
+                "debug setting",
+                "Debug Log",
+                isDebug,
+                "If true, Ragi Library throws sooo many debug logs..."
+            ).boolean
+            lootRagiTicket = config.get(
+                "loot tables",
+                "Loot Table for Ragi Ticket",
+                lootRagiTicket,
+                "Specify which loot tables to use for Ragi Ticket"
+            ).string
         } catch (e: Exception) {
             //エラーを出力
             e.printStackTrace()

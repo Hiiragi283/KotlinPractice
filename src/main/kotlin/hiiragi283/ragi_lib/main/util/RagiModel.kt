@@ -15,11 +15,13 @@ object RagiModel {
         if (item.hasSubtypes) {
             //メタデータが最大値になるまで処理を繰り返す
             for (i in 0 until item.getMetadata(283) + 1) {
-                ModelLoader.setCustomModelResourceLocation(item, i, ModelResourceLocation(item.registryName.toString() + "_" + i, "inventory"))
+                val location = ModelResourceLocation(item.registryName.toString() + "_" + i, "inventory")
+                ModelLoader.setCustomModelResourceLocation(item, i, location)
             }
         } else {
             //itemがメタデータを使用しない場合，IDから設定
-            ModelLoader.setCustomModelResourceLocation(item, 0, ModelResourceLocation(item.registryName!!, "inventory"))
+            val location = ModelResourceLocation(item.registryName!!, "inventory")
+            ModelLoader.setCustomModelResourceLocation(item, 0, location)
         }
     }
 
@@ -28,7 +30,8 @@ object RagiModel {
     fun setModelSame(item: Item) {
         //メタデータが最大値になるまで処理を繰り返す
         for (i in 0 until item.getMetadata(283) + 1) {
-            ModelLoader.setCustomModelResourceLocation(item, i, ModelResourceLocation(item.registryName!!, "inventory"))
+            val location = ModelResourceLocation(item.registryName!!, "inventory")
+            ModelLoader.setCustomModelResourceLocation(item, i, location)
         }
     }
 }

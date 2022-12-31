@@ -1,6 +1,5 @@
 package hiiragi283.ragi_lib.main.event
 
-import hiiragi283.ragi_lib.main.util.RagiLogger.infoDebug
 import hiiragi283.ragi_lib.main.util.RagiUtils
 import net.minecraft.item.ItemStack
 import net.minecraft.util.text.TextComponentString

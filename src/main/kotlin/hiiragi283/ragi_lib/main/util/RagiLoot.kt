@@ -26,4 +26,9 @@ object RagiLoot {
             ItemStack.EMPTY
         }
     }
+
+    fun getLoot(world: World, registryName: String): ItemStack {
+        val location = ResourceLocation(registryName)
+        return getLoot(world, location)
+    }
 }

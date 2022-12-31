@@ -53,7 +53,8 @@ object RagiRecipe {
     //定型クラフトレシピを追加するメソッド
     fun addShaped(output: ItemStack, vararg inputs: Any?) {
         //registryNameからResource Locationを生成
-        val location = ResourceLocation(Reference.MOD_ID, output.item.registryName!!.resourcePath + "_" + output.metadata)
+        val path = output.item.registryName!!.resourcePath + "_" + output.metadata
+        val location = ResourceLocation(Reference.MOD_ID, path)
         //レシピを追加する
         GameRegistry.addShapedRecipe(location, location, output, *inputs)
         RagiLogger.infoDebug("The recipe <recipe:$location> was added successfully!")
@@ -69,7 +70,8 @@ object RagiRecipe {
     //不定型クラフトレシピを追加するメソッド
     fun addShapeless(output: ItemStack, vararg inputs: Ingredient?) {
         //registryNameからResource Locationを生成
-        val location = ResourceLocation(Reference.MOD_ID, output.item.registryName!!.resourcePath + "_" + output.metadata)
+        val path = output.item.registryName!!.resourcePath + "_" + output.metadata
+        val location = ResourceLocation(Reference.MOD_ID, path)
         //レシピを追加する
         GameRegistry.addShapelessRecipe(location, location, output, *inputs)
         RagiLogger.infoDebug("The recipe <recipe:$location> was added successfully!")
@@ -78,7 +80,9 @@ object RagiRecipe {
     //不定型クラフトレシピを名前付きで追加するメソッド
     fun addShapelessOverride(registryName: String, output: ItemStack?, vararg inputs: Ingredient?) {
         //レシピを上書きする
-        GameRegistry.addShapelessRecipe(ResourceLocation(registryName), ResourceLocation(registryName), output!!, *inputs)
+        GameRegistry.addShapelessRecipe(
+            ResourceLocation(registryName), ResourceLocation(registryName), output!!, *inputs
+        )
         RagiLogger.infoDebug("The recipe <recipe:$registryName> was overrided successfully!")
     }
 
@@ -91,7 +95,9 @@ object RagiRecipe {
         //取得したレシピがnullでない場合
         if (recipeBefore !== null) {
             //レシピを置き換える
-            GameRegistry.addShapedRecipe(location, location, recipeBefore.recipeOutput, "A", 'A', RagiUtils.getStack("minecraft:barrier", 1, 0))
+            GameRegistry.addShapedRecipe(
+                location, location, recipeBefore.recipeOutput, "A", 'A', RagiUtils.getStack("minecraft:barrier", 1, 0)
+            )
             RagiLogger.infoDebug("The recipe <recipe:$registryName> was removed successfully!")
         } else {
             RagiLogger.warnDebug("The recipe <recipe:$registryName> was not found...")
