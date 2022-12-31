@@ -8,9 +8,17 @@ import net.minecraftforge.fml.common.SidedProxy
 import net.minecraftforge.fml.common.event.FMLInitializationEvent
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent
+import net.minecraftforge.fml.common.registry.ForgeRegistries
 
 //Modの定義
-@Mod(modid = Reference.MOD_ID, name = Reference.MOD_NAME, version = Reference.VERSION, dependencies = Reference.DEPENDENCIES, acceptedMinecraftVersions = Reference.MC_VERSIONS, modLanguageAdapter = Reference.LANGUAGE)
+@Mod(
+    modid = Reference.MOD_ID,
+    name = Reference.MOD_NAME,
+    version = Reference.VERSION,
+    dependencies = Reference.DEPENDENCIES,
+    acceptedMinecraftVersions = Reference.MC_VERSIONS,
+    modLanguageAdapter = Reference.LANGUAGE
+)
 class RagiLibrary {
 
     companion object {
@@ -46,7 +54,7 @@ class RagiLibrary {
     fun postInit(event: FMLPostInitializationEvent?) {
         //Itemの最大スタック数を上書きする
         //どんな名前のclassにしたらいいか思いつかなかった
-        val listMaxSize = mutableListOf("minecraft:acacia_boat")
+        /*val listMaxSize = mutableListOf("minecraft:acacia_boat")
         listMaxSize.add("minecraft:bed")
         listMaxSize.add("minecraft:beetroot_soup")
         listMaxSize.add("minecraft:birch_boat")
@@ -90,6 +98,10 @@ class RagiLibrary {
         listMaxSize.add("minecraft:written_book")
         for (name in listMaxSize) {
             RagiUtils.getItem(name).setMaxStackSize(64)
+        }*/
+        for (name in ForgeRegistries.ITEMS.keys) {
+            val item = RagiUtils.getItem(name.toString())
+            if (item.maxDamage == 0) item.setMaxStackSize(64)
         }
         //proxyの読み込み
         proxy!!.loadPostInit()

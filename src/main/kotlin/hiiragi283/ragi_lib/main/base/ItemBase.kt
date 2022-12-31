@@ -11,7 +11,7 @@ import net.minecraft.world.World
 import net.minecraftforge.fml.relauncher.Side
 import net.minecraftforge.fml.relauncher.SideOnly
 
-open class ItemBase(ID: String?, maxMeta: Int, maxStack: Int) : Item() {
+open class ItemBase(ID: String?, maxMeta: Int) : Item() {
 
     //private変数の宣言
     private val maxMeta: Int
@@ -21,7 +21,6 @@ open class ItemBase(ID: String?, maxMeta: Int, maxStack: Int) : Item() {
         creativeTab = CreativeTabs.MISC //表示するクリエイティブタブの設定
         setRegistryName(Reference.MOD_ID, ID) //IDの設定
         unlocalizedName = ID.toString() //翻訳キーをIDから取得する
-        maxStackSize = maxStack //スタック数の設定
         this.maxMeta = maxMeta //メタデータの代入
         if (maxMeta != 0) this.setHasSubtypes(true) //メタデータを使用する
     }

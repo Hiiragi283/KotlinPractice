@@ -10,10 +10,9 @@ import net.minecraft.item.ItemStack
 import net.minecraft.util.ActionResult
 import net.minecraft.util.EnumActionResult
 import net.minecraft.util.EnumHand
-import net.minecraft.util.ResourceLocation
 import net.minecraft.world.World
 
-class ItemRagiTicket : ItemBase("ragi_ticket", 0, 64) {
+class ItemRagiTicket : ItemBase("ragi_ticket", 0) {
 
     //Rarityを得るメソッド
     override fun getRarity(item: ItemStack): EnumRarity {
