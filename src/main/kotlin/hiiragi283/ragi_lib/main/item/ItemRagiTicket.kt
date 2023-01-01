@@ -1,6 +1,7 @@
 package hiiragi283.ragi_lib.main.item
 
 import hiiragi283.ragi_lib.config.RagiLibConfig
+import hiiragi283.ragi_lib.main.Reference
 import hiiragi283.ragi_lib.main.base.ItemBase
 import hiiragi283.ragi_lib.main.util.RagiLoot
 import net.minecraft.entity.player.EntityPlayer
@@ -11,7 +12,7 @@ import net.minecraft.util.EnumActionResult
 import net.minecraft.util.EnumHand
 import net.minecraft.world.World
 
-class ItemRagiTicket : ItemBase("ragi_ticket", 0) {
+class ItemRagiTicket : ItemBase(Reference.MOD_ID, "ragi_ticket", 0) {
 
     //Rarityを得るメソッド
     override fun getRarity(item: ItemStack): EnumRarity {

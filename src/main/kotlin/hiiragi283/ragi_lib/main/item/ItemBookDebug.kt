@@ -1,5 +1,6 @@
 package hiiragi283.ragi_lib.main.item
 
+import hiiragi283.ragi_lib.main.Reference
 import hiiragi283.ragi_lib.main.base.ItemBase
 import hiiragi283.ragi_lib.main.util.RagiUtils
 import net.minecraft.entity.player.EntityPlayer
@@ -12,7 +13,7 @@ import net.minecraft.util.math.BlockPos
 import net.minecraft.util.text.TextComponentTranslation
 import net.minecraft.world.World
 
-class ItemBookDebug : ItemBase("book_debug", 2) {
+class ItemBookDebug : ItemBase(Reference.MOD_ID, "book_debug", 2) {
     //Rarityを得るメソッド
     override fun getRarity(item: ItemStack): EnumRarity {
         //EPICを返す

@@ -1,6 +1,5 @@
 package hiiragi283.ragi_lib.main.base
 
-import hiiragi283.ragi_lib.main.Reference
 import net.minecraft.block.Block
 import net.minecraft.block.material.Material
 import net.minecraft.block.properties.PropertyInteger
@@ -10,7 +9,7 @@ import net.minecraft.creativetab.CreativeTabs
 import net.minecraft.item.Item
 import java.util.*
 
-open class BlockBase(Material: Material?, ID: String?, maxMeta: Int) : Block(Material!!) {
+open class BlockBase(Material: Material?, MOD: String, ID: String?, maxMeta: Int) : Block(Material!!) {
 
     //private変数の宣言
     private val maxMeta: Int
@@ -20,7 +19,7 @@ open class BlockBase(Material: Material?, ID: String?, maxMeta: Int) : Block(Mat
     init {
         defaultState = blockState.baseState.withProperty(type16, 0) //デフォルトのBlockstateをtype16の0番に設定
         setCreativeTab(CreativeTabs.DECORATIONS) //表示するクリエイティブタブの設定
-        setRegistryName(Reference.MOD_ID, ID) //IDの設定
+        setRegistryName(MOD, ID) //IDの設定
         unlocalizedName = ID.toString() //翻訳キーをIDから取得
         this.maxMeta = maxMeta //メタデータの最大値を代入
     }
