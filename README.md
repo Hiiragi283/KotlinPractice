@@ -16,7 +16,3 @@
     - [Defeatedcrow](https://twitter.com/defeatedcrow)
     - [Karakufire](https://twitter.com/karakufire)
     - [Tsukimimushi](https://twitter.com/Tsukimimushi)
-
-## Reference
-
-- [30分で覚えるKotlin文法](https://qiita.com/k5n/items/cc0377b75d8537ef8a85)
