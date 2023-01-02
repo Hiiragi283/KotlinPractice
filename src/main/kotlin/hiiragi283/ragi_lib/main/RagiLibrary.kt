@@ -3,6 +3,7 @@ package hiiragi283.ragi_lib.main
 import hiiragi283.ragi_lib.config.RagiLibConfig
 import hiiragi283.ragi_lib.main.proxy.CommonProxy
 import hiiragi283.ragi_lib.main.util.RagiUtils
+import net.minecraftforge.fluids.FluidRegistry
 import net.minecraftforge.fml.common.Mod
 import net.minecraftforge.fml.common.SidedProxy
 import net.minecraftforge.fml.common.event.FMLInitializationEvent
@@ -27,14 +28,20 @@ class RagiLibrary {
         var proxy: CommonProxy? = null
     }
 
+    init {
+        //Universal Bucketの使用
+        FluidRegistry.enableUniversalBucket()
+    }
+
     //Pre-Initializationの段階で呼ばれるevent
     @Mod.EventHandler
     fun preInit(event: FMLPreInitializationEvent?) {
         //configの読み込み
         RagiLibConfig.load(event!!.modConfigurationDirectory)
-        //Block, Event, Itemの登録
+        //Block, Event, Fluid, Itemの登録
         RagiLibraryInit.registerBlocks()
         RagiLibraryInit.registerEvents()
+        RagiLibraryInit.registerFluids()
         RagiLibraryInit.registerItems()
         //proxyの読み込み
         proxy!!.loadPreInit()
@@ -54,53 +61,9 @@ class RagiLibrary {
     fun postInit(event: FMLPostInitializationEvent?) {
         //Itemの最大スタック数を上書きする
         //どんな名前のclassにしたらいいか思いつかなかった
-        /*val listMaxSize = mutableListOf("minecraft:acacia_boat")
-        listMaxSize.add("minecraft:bed")
-        listMaxSize.add("minecraft:beetroot_soup")
-        listMaxSize.add("minecraft:birch_boat")
-        listMaxSize.add("minecraft:boat")
-        listMaxSize.add("minecraft:bucket")
-        listMaxSize.add("minecraft:cake")
-        listMaxSize.add("minecraft:chest_minecart")
-        listMaxSize.add("minecraft:command_block_minecart")
-        listMaxSize.add("minecraft:dark_oak_boat")
-        listMaxSize.add("minecraft:diamond_horse_armor")
-        listMaxSize.add("minecraft:egg")
-        listMaxSize.add("minecraft:enchanted_book")
-        listMaxSize.add("minecraft:ender_pearl")
-        listMaxSize.add("minecraft:furnace_minecart")
-        listMaxSize.add("minecraft:golden_horse_armor")
-        listMaxSize.add("minecraft:hopper_minecart")
-        listMaxSize.add("minecraft:iron_horse_armor")
-        listMaxSize.add("minecraft:jungle_boat")
-        listMaxSize.add("minecraft:lava_bucket")
-        listMaxSize.add("minecraft:minecart")
-        listMaxSize.add("minecraft:mushroom_stew")
-        listMaxSize.add("minecraft:rabbit_stew")
-        listMaxSize.add("minecraft:record_11")
-        listMaxSize.add("minecraft:record_13")
-        listMaxSize.add("minecraft:record_blocks")
-        listMaxSize.add("minecraft:record_cat")
-        listMaxSize.add("minecraft:record_chirp")
-        listMaxSize.add("minecraft:record_far")
-        listMaxSize.add("minecraft:record_mall")
-        listMaxSize.add("minecraft:record_mellohi")
-        listMaxSize.add("minecraft:record_stal")
-        listMaxSize.add("minecraft:record_strad")
-        listMaxSize.add("minecraft:record_wait")
-        listMaxSize.add("minecraft:record_ward")
-        listMaxSize.add("minecraft:saddle")
-        listMaxSize.add("minecraft:sign")
-        listMaxSize.add("minecraft:snowball")
-        listMaxSize.add("minecraft:spruce_boat")
-        listMaxSize.add("minecraft:tnt_minecart")
-        listMaxSize.add("minecraft:water_bucket")
-        listMaxSize.add("minecraft:written_book")
-        for (name in listMaxSize) {
-            RagiUtils.getItem(name).setMaxStackSize(64)
-        }*/
         for (name in ForgeRegistries.ITEMS.keys) {
             val item = RagiUtils.getItem(name.toString())
+            //itemの耐久値が0の場合、最大スタック数を64に上書きする
             if (item.maxDamage == 0) item.setMaxStackSize(64)
         }
         //proxyの読み込み
