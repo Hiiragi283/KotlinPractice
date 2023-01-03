@@ -8,7 +8,6 @@ object RagiLibConfig {
     //変数の宣言
     //Debug Setting
     var isDebug = false
-
     //Loot Tables
     var lootRagiTicket = "minecraft:chests/simple_dungeon"
 

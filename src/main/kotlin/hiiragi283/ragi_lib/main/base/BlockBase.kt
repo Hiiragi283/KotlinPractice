@@ -9,7 +9,7 @@ import net.minecraft.creativetab.CreativeTabs
 import net.minecraft.item.Item
 import java.util.*
 
-open class BlockBase(Material: Material?, MOD: String, ID: String?, maxMeta: Int) : Block(Material!!) {
+class BlockBase(Material: Material?, MOD: String, ID: String?, maxMeta: Int) : Block(Material!!) {
 
     //private変数の宣言
     private val maxMeta: Int
